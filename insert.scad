@@ -10,10 +10,26 @@ bladePathPoints=[
   [34,   11, 0 ]
 ];
 module footprint(){
-  difference() {
-    circle(d=85);
-    polygon(polyRound(beamChain(
-      bladePathPoints, offset1=1, offset2=-1), 20));
+  polygon(polyRound(beamChain(
+    bladePathPoints, offset1=1, offset2=-1), 20));
+}
+
+$fa = 1;
+
+difference() {
+  union() {
+  linear_extrude(1.2) difference() {
+    circle(d=84); footprint();
+  }
+  linear_extrude(10) difference() {
+    circle(d=82); footprint();
+  }
+  }
+linear_extrude(5) circle(d=80);
+linear_extrude(8.4) intersection() {
+  circle(d=80); union() {
+    offset(2) footprint();
+    square([80,15],center=true);
   }
 }
-linear_extrude(1.2) footprint();
+}
