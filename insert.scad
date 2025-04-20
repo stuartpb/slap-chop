@@ -1,18 +1,19 @@
 use <Round-Anything/polyround.scad>
 
 bladePathPoints=[
-  [6,51,0],
-  [14,0,3],
-  [28.5,91,2.7],
-  [40,-21,3],
-  [80-28.5,91,2.7],
-  [80-14,0,3],
-  [80-6,51,0]
+  [-34,  11, 0 ],
+  [-26, -40, 3 ],
+  [-11.5,51,2.7],
+  [0,   -61, 3 ],
+  [11.5 ,51,2.7],
+  [26,  -40, 3 ],
+  [34,   11, 0 ]
 ];
 module footprint(){
   difference() {
-    translate([40,40]) circle(d=80);
-    polygon(polyRound(beamChain(bladePathPoints,offset1=1, offset2=-1),20));
+    circle(d=80);
+    polygon(polyRound(beamChain(
+      bladePathPoints, offset1=1, offset2=-1), 20));
   }
 }
 linear_extrude(1) footprint();
